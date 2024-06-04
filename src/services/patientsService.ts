@@ -1,8 +1,13 @@
 import data from "../../data/patients";
-import { NewPatient, PatientWithoutSSN } from "../types";
+import { NewPatient, Patient, PatientWithoutSSN } from "../types";
 import { v1 as uuid } from 'uuid'
+import toNewPatient from "../utils";
 
-const patients = data
+const patients = data.map(e => {
+  const object = toNewPatient(e) as Patient
+  object.id = e.id
+  return object
+})
 
 export const getPatients = (): PatientWithoutSSN[] => {
   return patients.map(p => {
