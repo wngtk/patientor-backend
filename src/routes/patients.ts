@@ -1,16 +1,20 @@
 import { Router } from "express";
-import { addPatient, getPatients } from "../services/patientsService";
 import toNewPatient from "../utils";
+import patientsService from "../services/patientsService";
 
 const patientsRouter = Router()
 
 patientsRouter.get('/', (_req, res) => {
-  res.json(getPatients())
+  res.json(patientsService.getPatients())
+})
+
+patientsRouter.get('/:id', (req, res) => {
+  res.json(patientsService.findById(req.params.id))
 })
 
 patientsRouter.post('/', (req, res) => {
   const newPatient = toNewPatient(req.body)
-  res.json(addPatient(newPatient))
+  res.json(patientsService.addPatient(newPatient))
 })
 
 export default patientsRouter
