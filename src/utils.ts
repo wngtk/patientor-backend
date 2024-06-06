@@ -60,6 +60,7 @@ const toNewPatient = (object: unknown): NewPatient => {
       ssn: parseSSN(object.ssn),
       name: parseName(object.name),
       dateOfBirth: parseDateOfBirth(object.dateOfBirth),
+      entries: []
     }
   }
   throw new Error('Incorrect data: a field missing')

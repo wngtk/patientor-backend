@@ -1,14 +1,8 @@
-import data from "../../data/patients";
 import { NewPatient, Patient, PatientWithoutSSN } from "../types";
 import { v1 as uuid } from 'uuid'
-import toNewPatient from "../utils";
+import { default as data } from "../../data/patients-full";
 
-const patients = data.map(e => {
-  const object = toNewPatient(e) as Patient
-  object.entries = []
-  object.id = e.id
-  return object
-})
+const patients = data.map(e => e)
 
 const getPatients = (): PatientWithoutSSN[] => {
   return patients.map(p => {
