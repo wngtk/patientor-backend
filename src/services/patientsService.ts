@@ -1,4 +1,4 @@
-import { NewPatient, Patient, PatientWithoutSSN } from "../types";
+import { EntryWithoutId, NewPatient, Patient, PatientWithoutSSN } from "../types";
 import { v1 as uuid } from 'uuid'
 import { default as data } from "../../data/patients-full";
 
@@ -20,6 +20,11 @@ const findById = (id: string): Patient => {
   return res
 }
 
+const addEntry = (patient: Patient, entry: EntryWithoutId): Patient => {
+  patient.entries.push({id: uuid(), ...entry})
+  return patient
+}
+
 const addPatient= (newPatient: NewPatient): PatientWithoutSSN => {
   const result = {...newPatient, id: uuid()}
   patients.push(result)
@@ -31,5 +36,6 @@ const addPatient= (newPatient: NewPatient): PatientWithoutSSN => {
 export default {
   getPatients,
   findById,
-  addPatient
+  addPatient,
+  addEntry
 }
