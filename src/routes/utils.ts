@@ -29,21 +29,21 @@ const parseDate = (date: unknown): string => {
 }
 
 const parseDescription = (description: unknown): string => {
-  if (!isString(description)) {
+  if (!isString(description) || !description) {
     throw new Error('Incorrect or missing description')
   }
   return description
 }
 
 const parseEmployerName = (employerName: unknown): string => {
-  if (!isString(employerName)) {
+  if (!isString(employerName) || !employerName) {
     throw new Error('Incorrect or missing employerName')
   }
   return employerName
 }
 
 const parseSpecialist = (specialist: unknown): string => {
-  if (!isString(specialist)) {
+  if (!isString(specialist) || !specialist) {
     throw new Error('Incorrect or missing specialist')
   }
   return specialist

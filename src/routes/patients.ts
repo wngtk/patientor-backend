@@ -15,7 +15,13 @@ patientsRouter.get('/:id', (req, res) => {
 
 patientsRouter.post('/:id/entries', (req, res) => {
   const patient = patientsService.findById(req.params.id)
-  res.json(patientsService.addEntry(patient, toNewEntry(req.body)))
+  try {
+    res.json(patientsService.addEntry(patient, toNewEntry(req.body)))
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(400).send({ error: error.message })
+    }
+  }
 })
 
 patientsRouter.post('/', (req, res) => {
